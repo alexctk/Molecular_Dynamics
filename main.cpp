@@ -24,13 +24,13 @@ int main()
   */
   //initialization block
   double echarge = 1.60217662*pow( 10, -19 );
-  unsigned int cols = 100;
-  unsigned int rows = 100;
-  unsigned int height = 100;
-  atom a( echarge, 1,
+  unsigned int cols = 600;
+  unsigned int rows = 600;
+  unsigned int height = 300;
+  atom a( echarge, 2,
           0, 0, 0,
-          1, 1, 1,
-          1, 0, 0,
+          1, 1, 0,
+          0, 0, 0,
           rows, cols, height );
   //a.save_potential_csv( "potential.csv" );
   //create render window
@@ -43,7 +43,7 @@ int main()
   circ.setPosition( a.pos[0], a.pos[1] );
 
   //global
-  unsigned int delay_ms = 1000;
+  unsigned int delay_ms = 100000;
 
 
   //event block

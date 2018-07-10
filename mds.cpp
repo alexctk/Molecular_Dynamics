@@ -215,8 +215,8 @@ double mat_min( double **mat, unsigned int rows, unsigned int cols )
 //input takes matrix of values and outputs heatmap in new matrix
 unsigned int **normalize( double **mat, unsigned int rows, unsigned int cols )
 {
-  double min = mat_min( mat );
-  double max = mat_max( mat );
+  double min = mat_min( mat, rows, cols );
+  double max = mat_max( mat, rows, cols );
   double new_val;
   unsigned int **norm = new unsigned int*[rows];
   for( int i = 0; i < cols; i++ ){
@@ -257,22 +257,4 @@ unsigned int **normalize( double **mat, unsigned int rows, unsigned int cols )
 }
 
 
-//take a matrix of normalized greyscale values between 0 and 255_normalize
-//convert into array of RGB_COLOR structs which tell the RBG value at each point
-RGB_COLOR** color_graph( unsigned int **mat, unsigned int rows, unsigned int cols )
-{
-  RGB_COLOR* rbg = new RGB_COLOR[rows];
-  for( int i = 0; i < cols; i++ ){
-    rbg[i] = new RGB_COLOR[cols];
-  }
 
-  //calculate the rbg for each point in mat and put it into the new array
-  uint8_t r;
-  uint8_t g;
-  uint8_t b;
-  for( int j = 0; j < rows; j++ ){
-    for( int i = 0; i < cols; i++ ){
-      
-    }
-  }
-}

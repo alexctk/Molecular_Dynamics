@@ -42,17 +42,6 @@ public:
   void apply_acceleration();
 };
 
-class RGB_COLOR {
-private:
-  uint8_t r, g, b;
-public:
-  RGB_COLOR(uint8_t red, uint8_t green, uint8_t blue){
-    r = red;
-    g = green;
-    b = blue;
-  }
-  ~RGB_COLOR(){}
-};
 
 void print_plane( int** matr, unsigned int cols, unsigned int rows );
 double calc_potential( double q, int r, unsigned int *pos,
@@ -61,12 +50,8 @@ double calc_elec( double q, int r, unsigned int *pos,
                   unsigned int x, unsigned int y, unsigned int height );
 void sleep( unsigned int ms );
 
-double mat_max( double **mat );
+double mat_max( double **mat, unsigned int rows, unsigned int cols );
 
-double mat_min( double **mat );
+double mat_min( double **mat, unsigned int rows, unsigned int cols );
 
 unsigned int **normalize( double **mat, unsigned int rows, unsigned int cols );
-
-//take a matrix of normalized greyscale values between 0 and 255_normalize
-//convert into array of RGB_COLOR structs which tell the RBG value at each point
-RGB_COLOR** color_graph( unsigned int **mat, unsigned int rows, unsigned int cols );
