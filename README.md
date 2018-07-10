@@ -1,1 +1,3 @@
-A program for visualizing forces between particles. So far, can visualize the motion of one particle. Still need to solve problems such as handling interactions between many particles. 
+A program for visualizing forces between particles.
+
+So far, can visualize the motion of one particle. Still need to solve problems such as handling interactions between many particles. A solution to this is creating a global array of physical potential or forces. Self interactions are eliminated by subtracting it's own potential field from the global array, then calculating the interactions with the remaining field. 
