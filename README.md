@@ -1,0 +1,1 @@
+A program for visualizing forces between particles. So far, can visualize the motion of one particle. Still need to solve problems such as handling interactions between many particles. 
