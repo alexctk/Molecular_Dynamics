@@ -28,6 +28,7 @@ public:
   void print_accel();
   void print_potential();
   unsigned int give_radius();
+  double** get_potential_field();
 
   //variable changing functions
   void set_pos(unsigned int x, unsigned int y, unsigned int z );
@@ -40,6 +41,7 @@ public:
   //kinematic functions
   void apply_velocity();
   void apply_acceleration();
+  void calc_potential_grid();
 };
 
 
@@ -55,3 +57,5 @@ double mat_max( double **mat, unsigned int rows, unsigned int cols );
 double mat_min( double **mat, unsigned int rows, unsigned int cols );
 
 unsigned int **normalize( double **mat, unsigned int rows, unsigned int cols );
+
+void print_potential( double** field, unsigned int cols, unsigned int rows );

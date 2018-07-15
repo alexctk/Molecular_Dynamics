@@ -4,6 +4,7 @@
 #include <fstream>
 #include <time.h>
 #include <stdint.h>
+using namespace std;
 
 #include "mds.hpp"
 
@@ -36,6 +37,8 @@ atom::atom( double c, unsigned int r,
       potential_field[j][i] = calc_potential( c, r, pos, i, j, 0 );
     }
   }
+  //cout << potential_field[int(cols/2)][int(rows/2)] << endl;
+  //print_potential();
 
 }
 atom::~atom()
@@ -68,6 +71,11 @@ unsigned int atom::give_radius()
   return radius;
 }
 
+double** atom::get_potential_field()
+{
+  return potential_field;
+}
+
 void atom::set_pos( unsigned int x, unsigned int y, unsigned int z )
 {
   pos[0] = x;
@@ -93,7 +101,7 @@ void atom::print_potential()
 {
   for( int j = 0; j < rows; j++ ){
     for( int i = 0; i < cols; i++ ){
-      printf("%f ", potential_field[j][i] );
+      printf("%e ", potential_field[j][i] );
     }
     printf("\n");
   }
@@ -152,6 +160,7 @@ void print_plane( int** matr, unsigned int cols, unsigned int rows )
   }
 }
 
+// using an electric potential
 double calc_potential( double q, int r, unsigned int* pos,
                       unsigned int x, unsigned int y, unsigned int z )
 {
@@ -159,7 +168,29 @@ double calc_potential( double q, int r, unsigned int* pos,
   double dist = sqrt( pow( (double)x-(double)pos[0], 2.00 ) + pow( (double)y-(double)pos[1], 2.00 )
                       + pow( (double)z-(double)pos[2], 2.00  ) );
   double u = (-pow(q, 2.00))/(4.00*M_PI*e*dist);
+  //cout << u << endl;
   return u;
+}
+
+void atom::calc_potential_grid()
+{
+  //cout << "calc potential" << endl;
+  // set potential at atom position at 0 for now
+  for( int j = 0; j < rows; j++ ){
+    //cout << "j=" << j << endl;
+    for( int i = 0; i < cols; i++ ){
+      //cout << "i=" << i << endl;
+      if( j == pos[1] && i == pos[0] ){
+	potential_field[j][i] = 0;
+      }
+      else{
+	potential_field[j][i] = calc_potential( charge, radius, pos,
+						i, j, 0);
+      }
+    }
+  }
+  return;
+
 }
 
 double calc_elec( double q, int r, unsigned int* pos,
@@ -258,3 +289,12 @@ unsigned int **normalize( double **mat, unsigned int rows, unsigned int cols )
 
 
 
+void print_potential( double** field, unsigned int cols, unsigned int rows )
+{
+  for( int j = 0; j < rows; j++ ){
+    for( int i = 0; i < cols; i++ ){
+      printf("%e ", field[j][i] );
+    }
+    printf("\n");
+  }
+}
